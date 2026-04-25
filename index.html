@@ -247,7 +247,7 @@ function buildPhotoPrompt(frame) {
 function fetchSketch(prompt) {
   var encoded = encodeURIComponent(prompt);
   var seed = Math.floor(Math.random() * 999999);
-  var url = '/pollinations/' + encoded + '?width=1280&height=720&seed=' + seed + '&nologo=true&model=flux';
+  var url = 'https://storyboard-api.gjkgreene.workers.dev/pollinations/' + encoded + '?width=1280&height=720&seed=' + seed + '&nologo=true&model=flux';
   return fetch(url).then(function(res) {
     if (!res.ok) throw new Error('Pollinations error ' + res.status);
     return res.blob();
@@ -266,7 +266,7 @@ function runwayGenerate(prompt) {
   var key = document.getElementById('runway-key').value.trim();
   var proxy = document.getElementById('proxy-url').value.trim();
   var useProxy = state.useProxy;
-  var endpoint = useProxy ? (proxy + '/runway/text_to_image') : '/runway/text_to_image';
+  var endpoint = useProxy ? (proxy + '/runway/text_to_image') : 'https://storyboard-api.gjkgreene.workers.dev/runway/text_to_image';
   var headers = { 'Content-Type': 'application/json', 'X-Runway-Version': '2024-11-06' };
   if (!useProxy && key) headers['Authorization'] = 'Bearer ' + key;
 
