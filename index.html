@@ -247,8 +247,8 @@
 
 <script>
 // ─── Constants ────────────────────────────────────────────────────────────────
-const ANTHROPIC = 'https://api.anthropic.com/v1/messages';
-const RUNWAY_BASE = 'https://api.dev.runwayml.com/v1';
+const ANTHROPIC = '/anthropic/v1/messages';
+const RUNWAY_BASE = '/runway';
 const DEFAULT_STYLE = 'Photographic, cinematic, ARRI camera aesthetic, professional TV commercial. Realistic lighting, shallow depth of field, warm color grade, high production value.';
 
 // ─── State ────────────────────────────────────────────────────────────────────
@@ -333,7 +333,7 @@ async function generatePhotoPrompt(frame) {
 async function fetchSketch(prompt) {
   const encoded = encodeURIComponent(prompt);
   const seed = Math.floor(Math.random() * 999999);
-  const url = `https://image.pollinations.ai/prompt/${encoded}?width=1280&height=720&seed=${seed}&nologo=true&model=flux`;
+  const url = `/pollinations/${encoded}?width=1280&height=720&seed=${seed}&nologo=true&model=flux`;
   const res = await fetch(url);
   if (!res.ok) throw new Error(`Pollinations ${res.status}`);
   const blob = await res.blob();
